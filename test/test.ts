@@ -1,6 +1,6 @@
 /* eslint @typescript-eslint/no-empty-function: [off] */
 import { experimental } from '../lib';
-import { original } from '../lib';
+import { unexperimental } from '../lib';
 
 import chai from 'chai';
 const { expect } = chai;
@@ -322,16 +322,16 @@ describe('experimental w/static accessors', () => {
     });
 });
 
-describe('original', () => {
+describe('unexperimental', () => {
     it('should exist', () => {
-        expect(original).to.not.be.an('undefined');
+        expect(unexperimental).to.not.be.an('undefined');
     });
     it('should be a function', () => {
-        expect(original).to.be.a('function');
+        expect(unexperimental).to.be.a('function');
     });
 });
 
-describe('original', () => {
+describe('unexperimental', () => {
     const sandbox = chai.spy.sandbox();
     beforeEach(() => {
         sandbox.on(console, 'warn');
@@ -347,7 +347,7 @@ describe('original', () => {
             }
         }
         const instance = new MyClass();
-        original(instance.method).bind(instance)();
+        unexperimental(instance.method).bind(instance)();
         expect(console.warn).to.have.not.been.called();
     });
     it('should invoke original class method w/o a message', () => {
@@ -358,7 +358,7 @@ describe('original', () => {
             }
         }
         const instance = new MyClass();
-        original(instance.method).bind(instance)();
+        unexperimental(instance.method).bind(instance)();
         expect(console.warn).to.have.not.been.called();
     });
     it('should invoke original class method w/o a computed message', () => {
@@ -373,12 +373,12 @@ describe('original', () => {
             }
         }
         const instance = new MyClass();
-        original(instance.method).bind(instance)();
+        unexperimental(instance.method).bind(instance)();
         expect(console.warn).to.have.not.been.called();
     });
 });
 
-describe('original w/static methods', () => {
+describe('unexperimental w/static methods', () => {
     const sandbox = chai.spy.sandbox();
     beforeEach(() => {
         sandbox.on(console, 'warn');
@@ -394,7 +394,7 @@ describe('original w/static methods', () => {
                 expect(this).to.eq(MyClass);
             }
         }
-        original(MyClass.method).bind(MyClass)();
+        unexperimental(MyClass.method).bind(MyClass)();
         expect(console.warn).to.have.not.been.called();
     });
     it('should invoke original class method w/o a message', () => {
@@ -405,7 +405,7 @@ describe('original w/static methods', () => {
                 expect(this).to.eq(MyClass);
             }
         }
-        original(MyClass.method).bind(MyClass)();
+        unexperimental(MyClass.method).bind(MyClass)();
         expect(console.warn).to.have.not.been.called();
     });
     it('should invoke original class method w/o a computed message', () => {
@@ -420,7 +420,7 @@ describe('original w/static methods', () => {
                 expect(this).to.eq(MyClass);
             }
         }
-        original(MyClass.method).bind(MyClass)();
+        unexperimental(MyClass.method).bind(MyClass)();
         expect(console.warn).to.have.not.been.called();
     });
 });
